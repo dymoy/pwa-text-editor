@@ -7,7 +7,7 @@
         "server": "nodemon server.js --ignore client"
     },
     "keywords": [],
-    "author": "",
+    "author": "Derek Moy <derekymoy@gmail.com>",
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.1"
