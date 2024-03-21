@@ -1,144 +1,71 @@
-# 19 Progressive Web Applications (PWA): Text Editor
+# Just Another Text Editor PWA 
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Your Task
+## Description 
 
-As you have progressed through this course, you have put together a number of impressive projects that you can show off to potential employers. This project is no exception; in fact, it features some of the most impressive expressions of the concepts you have learned so far.
+This single-page application is a text-editor that follows PWA criteria and allows a user to reliably write and save notes.  
 
-Your task is to build a text editor that runs in the browser. The app will be a single-page application that meets the PWA criteria. Additionally, it will feature a number of data persistence techniques that serve as redundancy in case one of the options is not supported by the browser. The application will also function offline. 
+[PWAs](https://web.dev/explore/progressive-web-apps), or Progressive Web Applications, are programs that use web technologies to build fast and flexible web applications so that they perform like a native app. 
 
-To build this text editor, you will start with an existing application and implement methods for getting and storing data to an IndexedDB database. You will use a package called `idb`, which is a lightweight wrapper around the IndexedDB API. It features a number of methods that are useful for storing and retrieving data, and is used by companies like Google and Mozilla.
+This application utilizes the `IndexedDB` database for retrieving and storing data so that any written note is automatically saved and persists when the window is refreshed or reopened. This tool also implements a number of [Workbox](https://web.dev/learn/pwa/workbox) features and plugins including `InjectManifest` to inject a custom service worker for allowing offline functionality, and caching methods for storing and serving static assets.
 
-You will deploy this full-stack application to Render using the [Render Deployment Guide on The Full-Stack Blog](https://coding-boot-camp.github.io/full-stack/render/render-deployment-guide). 
+## Table of Contents 
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Questions](#questions)
+  
+## Installation 
+There is no installation necessary for this application as it is deployed using [Render](https://docs.render.com/). You can access and use the application [here](https://pwa-text-editor-xj19.onrender.com/) or at the following link: https://pwa-text-editor-xj19.onrender.com/
 
-**Important**: Make sure your submission includes the `.npmrc` file in this starter code.  This will ensure your application will deploy properly to Render. 
+If you are interested in running the application locally, please use the following steps:
+1. Clone this repository to your local machine. (For reference, visit the [Cloning a Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) GitHub Docs article.)
+2. Run `npm install && npm run build` in your CLI to download the npm package dependencies.
+3. Run `npm run start` to start up the backend and serve the client.
+4. Navigate to `http://localhost:3000` on your local web browser to use the application. 
+  
+## Dependencies
+This project requires the following npm package dependencies, which are included in `client/package.json`:  
 
-## User Story 
+![Image of package dependencies](./Assets/pwa-package-depedencies.png)
 
-```md
-AS A developer
-I WANT to create notes or code snippets with or without an internet connection
-SO THAT I can reliably retrieve them for later use
-```
+## Usage 
 
-## Acceptance Criteria
+### Getting Started
+Upon accessing the [text editor](https://pwa-text-editor-xj19.onrender.com/), `IndexedDB` will immediately create a database storage and the user will be presented with the main page, depicted below.  
 
-```md
-GIVEN a text editor web application
-WHEN I open my application in my editor
-THEN I should see a client server folder structure
-WHEN I run `npm run start` from the root directory
-THEN I find that my application should start up the backend and serve the client
-WHEN I run the text editor application from my terminal
-THEN I find that my JavaScript files have been bundled using webpack
-WHEN I run my webpack plugins
-THEN I find that I have a generated HTML file, service worker, and a manifest file
-WHEN I use next-gen JavaScript in my application
-THEN I find that the text editor still functions in the browser without errors
-WHEN I open the text editor
-THEN I find that IndexedDB has immediately created a database storage
-WHEN I enter content and subsequently click off of the DOM window
-THEN I find that the content in the text editor has been saved with IndexedDB
-WHEN I reopen the text editor after closing it
-THEN I find that the content in the text editor has been retrieved from our IndexedDB
-WHEN I click on the Install button
-THEN I download my web application as an icon on my desktop
-WHEN I load my web application
-THEN I should have a registered service worker using workbox
-WHEN I register a service worker
-THEN I should have my static assets pre cached upon loading along with subsequent pages and static assets
-WHEN I deploy to Render
-THEN I should have proper build scripts for a webpack application
-```
+![Image of Main Page](./Assets/jate-landing.png)
 
-## Mock-Up
+When navigating to Chrome DevTools, you'll see the app details for the registered service worker, manfifest file, and pre-cached static assets. 
 
-The following animation demonstrates the application functionality:
+![Image of registered service worker](./Assets/devtools-service-worker.png)
+![Image of manifest file](./Assets/devtools-manifest.png)
+![Image of pre-cached static assets](./Assets/devtools-cache-bundles.png)
 
-![Demonstration of the finished Module 19 Challenge being used in the browser and then installed.](./Assets/00-demo.gif)
+### Updating Content
+After writing some content and clicking off of the DOM window, the new content is updated in the database storage. You will find that the content data persists after closing and reopening the application by re-rendering the value saved in `IndexedDB`.  
 
-The following image shows the application's `manifest.json` file:
+![Image of updated content](./Assets/devtools-put.png)
+![Image of updated IndexedDB value](./Assets/devtools-idb.png)
 
-![Demonstration of the finished Module 19 Challenge with a manifest file in the browser.](./Assets/01-manifest.png)
+### Installing a Desktop Shortcut
+As a PWA, this text editor supports installation so that it can be saved to your local desktop. By pressing the Install button, J.A.T.E. will be downloaded as a Chrome App and can be accessed directly as a desktop shortcut. 
 
-The following image shows the application's registered service worker:
+![Image highlighting the install button](./Assets/jate-install-btn.png)
+![Image of J.A.T.E. installed to desktop](./Assets/jate-shortcut.png)
 
-![Demonstration of the finished Module 19 Challenge with a registered service worker in the browser.](./Assets/02-service-worker.png)
+## Contributing
+To make contributions to this project:  
+1. Fork the repository  
+2. Make some commits to improve the application
+3. Open a Pull Request on GitHub
+4. From there, we can discuss your changes and merge the pull request once your contributions have been approved!
 
-The following image shows the application's IndexedDB storage:
-
-![Demonstration of the finished Module 19 Challenge with a IndexedDB storage named 'jate' in the browser.](./Assets/03-idb-storage.png)
-
-## Grading Requirements
-
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria plus the following:
-
-  * Uses IndexedDB to create an object store and includes both GET and PUT methods
-
-  * The application works without an internet connection
-
-  * Automatically saves content inside the text editor when the DOM window is unfocused
-
-  * Bundled with webpack
-
-  * Create a service worker with workbox that Caches static assets
-
-  * The application should use babel in order to use async / await
-
-  * Application must have a generated `manifest.json` using the `WebpackPwaManifest` plug-in
-
-  * Can be installed as a Progressive Web Application
-
-### Deployment: 32%
-
-* Application deployed to Render at live URL with build scripts
-
-* Application loads with no errors
-
-* Application GitHub URL submitted
-
-* GitHub repo contains application code
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate
-
-* Application user interface style is clean and polished
-
-* Application resembles the mock-up functionality provided in the Challenge instructions
-
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project
-
-- - -
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+## License 
+This GitHub repository is licensed under the MIT license. Please refer to the license documentation [here](https://opensource.org/licenses/MIT).
+  
+## Questions
+This project was developed by [dymoy](https://github.com/dymoy).  
+For any related questions, please contact me via email at <derekymoy@gmail.com>.
