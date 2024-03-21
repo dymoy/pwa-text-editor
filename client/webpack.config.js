@@ -34,8 +34,8 @@ module.exports = () => {
 				description: 'Text Editor PWA',
 				background_color: '#225ca3',
 				theme_color: '#225ca3',
-				start_url: './',
-				publicPath: './',
+				start_url: '/',
+				publicPath: '/',
 				icons: [
 					{
 						src: path.resolve('src/images/logo.png'),

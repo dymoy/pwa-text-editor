@@ -38,7 +38,7 @@ export const putDb = async (content) => {
 	const request = store.put({id: 1, value: content});
 	const result = await request;
 
-	console.log('Data was successfully written to the database', result);
+	console.log('✅ Data was successfully written to the database', result);
 }
 
 /**
